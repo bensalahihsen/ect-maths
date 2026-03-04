@@ -1,6 +1,6 @@
 // Données des fichiers par bloc
 const filesData = {
-    "Bloc1": ["cours1.pdf", "exercice1.docx"],
+    "Bloc1": ["cours1.pdf"],
     "Bloc2": ["cours2.pdf"],
     "Bloc3": ["cours3.pdf"],
     "Bloc4": ["cours4.pdf"],
