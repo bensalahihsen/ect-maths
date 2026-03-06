@@ -105,3 +105,52 @@ body {
     color: inherit;
 }
 
+.login-body{
+
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+background:#f2f4f8;
+font-family:Arial;
+
+}
+
+.login-box{
+
+background:white;
+padding:40px;
+border-radius:10px;
+box-shadow:0 5px 15px rgba(0,0,0,0.2);
+text-align:center;
+
+}
+
+.login-box input{
+
+width:200px;
+padding:10px;
+margin:10px;
+}
+
+.login-box button{
+
+padding:10px 20px;
+background:#2c7be5;
+color:white;
+border:none;
+border-radius:5px;
+
+}
+
+.logout{
+
+position:absolute;
+top:20px;
+right:20px;
+background:red;
+color:white;
+border:none;
+padding:10px;
+
+}

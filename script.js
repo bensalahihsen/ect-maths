@@ -1,3 +1,9 @@
+if(localStorage.getItem("logged") !== "true"){
+
+window.location.href="login.html";
+
+}
+
 // Données des fichiers par bloc
 const filesData = {
     "Bloc1": ["cours1.pdf"],
@@ -55,4 +61,12 @@ function showFiles(blocName, files) {
 // Retour à l’écran des blocs
 function goBack() {
     location.reload();
+}
+
+function logout(){
+
+localStorage.removeItem("logged");
+
+window.location.href="login.html";
+
 }
