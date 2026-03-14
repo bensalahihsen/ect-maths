@@ -82,3 +82,14 @@ localStorage.removeItem("logged");
 window.location.href="login.html";
 
 }
+
+function openBloc(folderId){
+
+document.getElementById("driveFiles").innerHTML = `
+<iframe 
+src="https://drive.google.com/embeddedfolderview?id=${folderId}#list"
+style="width:100%; height:600px; border:0;">
+</iframe>
+`;
+
+}
