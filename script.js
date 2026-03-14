@@ -1,49 +1,75 @@
 const filesData = {
+
     "Bloc1": [
-        { name: "Cours2.pdf", url: "https://drive.google.com/drive/folders/1nDQl93pMmLKA16KB-MjQmX-H1YWiJ9O0?usp=drive_link" }
+        {
+            name: "Cours2.pdf",
+            id: "1YfZDWMMZy5a4JeUUVRj5r91XroEmwkpG"
+        }
     ],
+
     "Bloc2": [],
     "Bloc3": [],
     "Bloc4": [],
     "Bloc5": []
+
 };
 
+
 function openBloc(blocName) {
+
     const grid = document.querySelector(".grid");
     grid.innerHTML = "";
 
     const files = filesData[blocName];
 
-    if(files.length === 0){
+    if (files.length === 0) {
+
         grid.innerHTML = "<p>Aucun fichier dans ce bloc.</p>";
+
     } else {
 
         files.forEach(file => {
 
-            const div = document.createElement("div");
-            div.className = "card file-card";
+            const card = document.createElement("div");
+            card.className = "card file-card";
+            card.innerText = file.name;
 
-            const name = document.createElement("a");
-            name.href = file.url;
-            name.target = "_blank";
-            name.textContent = file.name;
+            card.onclick = () => {
+                showFile(file.id);
+            };
 
-            const download = document.createElement("a");
-            download.href = file.url;
-            download.textContent = " ⬇️";
-            download.download = "";
+            grid.appendChild(card);
 
-            div.appendChild(name);
-            div.appendChild(download);
-
-            grid.appendChild(div);
         });
+
     }
 
-    const back = document.createElement("div");
-    back.className = "card";
-    back.textContent = "⬅ Retour";
-    back.onclick = () => location.reload();
+    const backButton = document.createElement("div");
+    backButton.className = "card";
+    backButton.innerText = "⬅ Retour";
+    backButton.onclick = () => location.reload();
 
-    grid.appendChild(back);
+    grid.appendChild(backButton);
+
+}
+
+
+function showFile(fileId) {
+
+    const grid = document.querySelector(".grid");
+
+    grid.innerHTML = `
+
+        <iframe 
+        src="https://drive.google.com/file/d/${fileId}/preview"
+        width="100%" 
+        height="600px"
+        style="border:none;">
+        </iframe>
+
+        <div class="card" onclick="location.reload()">
+        ⬅ Retour
+        </div>
+
+    `;
 }
