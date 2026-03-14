@@ -1,6 +1,6 @@
 const filesData = {
     "Bloc1": [
-        { name: "Cours2.pdf", url: "LIEN_GOOGLE_DRIVE_DU_FICHIER" }
+        { name: "Cours2.pdf", url: "https://drive.google.com/drive/folders/1nDQl93pMmLKA16KB-MjQmX-H1YWiJ9O0?usp=drive_link" }
     ],
     "Bloc2": [],
     "Bloc3": [],
