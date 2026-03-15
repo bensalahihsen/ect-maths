@@ -1,7 +1,7 @@
 const users = {
     "ihsen": "math123",
-    "prof1": "classe2024",
-    "prof2": "math2025"
+    "asma": "math123",
+    "souhaib": "math123"
 };
 
 function login(){

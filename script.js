@@ -1,3 +1,7 @@
+if (!localStorage.getItem("logged")) {
+    window.location.href = "login.html";
+}
+
 const folders = {
 
     "Bloc1": "1nDQl93pMmLKA16KB-MjQmX-H1YWiJ9O0",
@@ -8,7 +12,6 @@ const folders = {
 
 };
 
-
 function openBloc(blocName){
 
     const folderId = folders[blocName];
@@ -17,15 +20,23 @@ function openBloc(blocName){
 
     grid.innerHTML = `
 
+    <div class="card" onclick="location.reload()">
+    ⬅ Retour
+    </div>
+
     <iframe 
     src="https://drive.google.com/embeddedfolderview?id=${folderId}#list"
     style="width:100%; height:600px; border:0;">
     </iframe>
 
-    <div class="card" onclick="location.reload()">
-    ⬅ Retour
-    </div>
-
     `;
 
+}
+
+function logout() {
+    // Supprime la session utilisateur
+    localStorage.removeItem("logged");
+
+    // Redirige vers la page de connexion
+    window.location.href = "login.html";
 }
