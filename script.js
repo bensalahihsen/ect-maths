@@ -1,4 +1,4 @@
-if (!localStorage.getItem("logged")) {
+if(localStorage.getItem("logged") !== "true"){
     window.location.href = "login.html";
 }
 
@@ -26,7 +26,7 @@ function openBloc(blocName){
 
     <iframe 
     src="https://drive.google.com/embeddedfolderview?id=${folderId}#list"
-    style="width:100%; height:600px; border:0;">
+    style="width:100%; height:800px; border:0;">
     </iframe>
 
     `;
