@@ -376,3 +376,40 @@ footer{
     color:white;
     font-size:14px;
 }
+
+.back-btn {
+    background-color: #2c7be5; /* bleu agréable */
+    color: white;
+}
+
+.about-btn {
+    background-color: #2c7be5;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.about-btn:hover {
+    background-color: #1a5fcc;
+}
+
+.about-container {
+    max-width: 800px;
+    margin: auto;
+    padding: 20px;
+    color: white;
+    line-height: 1.6;
+    text-align: left; /* IMPORTANT */
+}
+
+.back-btn {
+    display: inline-block;
+    margin-top: 20px;
+    background-color: #2c7be5;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 6px;
+    text-decoration: none;
+}

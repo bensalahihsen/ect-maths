@@ -1,42 +1,80 @@
+// 🔐 protection login
 if(localStorage.getItem("logged") !== "true"){
     window.location.href = "login.html";
 }
 
-const folders = {
-
-    "Bloc1": "1nDQl93pMmLKA16KB-MjQmX-H1YWiJ9O0",
-    "Bloc2": "17yIfxM6NqiamyWm0uuBPugWaV0wfAQi5",
-    "Bloc3": "12r09E6w5LcKN9Q21gdr7XRfF7BfX5YFi",
-    "Bloc4": "17UwhQeTMhAo3449k6C4zskLMkaqogUfY",
-    "Bloc5": "17_aGxwB98JOB4jWBdxOAVL3FUZiSJkrA"
-
+// 📂 dossiers des unités
+const blocs = {
+    "Bloc1": [
+        {name:"Unité 1", id:"10q82sD-Z22LjeBVCDfCAdwrgy8Mls-9E"},
+        {name:"Unité 2", id:"1KjK75YiLQUeB0WAMb9Qe_EYg81SXA0_L"},
+        {name:"Unité 3", id:"1r_5zAIzxCUrl_UY1yYkhNXKGtOJzqFvh"},
+        {name:"Unité 4", id:"1Ug9CauFD6ez_PbXUS8rl_mi85lK6rsTg"},
+        {name:"Unité 5", id:"1N5gC18WDfFVN-k2CiBOuuthAkkx0c1F_"},
+        {name:"Unité 6", id:"1WrXVPb4wc5y5LiD8YaQF9mweg_qi1d5a"}
+    ],
+    "Bloc2": [],
+    "Bloc3": [],
+    "Bloc4": [],
+    "Bloc5": []
 };
 
+// 🔹 afficher les unités
 function openBloc(blocName){
-
-    const folderId = folders[blocName];
-
     const grid = document.querySelector(".grid");
+    const units = blocs[blocName];
 
-    grid.innerHTML = `
+    // layout vertical
+    grid.style.display = "flex";
+    grid.style.flexDirection = "column";
+    grid.style.alignItems = "center";
+    grid.style.gap = "15px";
 
-    <div class="card" onclick="location.reload()">
-    ⬅ Retour
-    </div>
+    let content = `<div class="card back-btn" onclick="location.reload()">⬅ Retour</div>`;
 
-    <iframe 
-    src="https://drive.google.com/embeddedfolderview?id=${folderId}#list"
-    style="width:100%; height:800px; border:0;">
-    </iframe>
+    if(units.length === 0){
+        content += `<p>Aucune unité disponible</p>`;
+    }
 
-    `;
+    units.forEach((unit, index) => {
+        content += `
+            <div class="card" onclick="openUnit('${blocName}', ${index})">
+                ${unit.name}
+            </div>
+        `;
+    });
 
+    grid.innerHTML = content;
 }
 
-function logout() {
-    // Supprime la session utilisateur
-    localStorage.removeItem("logged");
+// 🔹 afficher une unité
+function openUnit(blocName, index){
+    const unit = blocs[blocName][index];
+    const grid = document.querySelector(".grid");
 
-    // Redirige vers la page de connexion
+    grid.style.display = "block";
+
+    grid.innerHTML = `
+        <div class="card back-btn" onclick="openBloc('${blocName}')">⬅ Retour</div>
+
+        <h2 style="color:white; margin:20px 0; text-align:center;">
+            ${unit.name}
+        </h2>
+
+        <iframe 
+        src="https://drive.google.com/embeddedfolderview?id=${unit.id}#list"
+        style="width:100%; height:500px; border:0;">
+        </iframe>
+    `;
+}
+
+// 🔹 reset view
+function resetView(){
+    location.reload();
+}
+
+// 🔹 logout
+function logout(){
+    localStorage.removeItem("logged");
     window.location.href = "login.html";
 }
