@@ -5,7 +5,7 @@ if(localStorage.getItem("logged") !== "true"){
 
 // 📂 dossiers des unités
 const blocs = {
-    "Bloc1": [
+    "S1": [
         {name:"Unité 1", id:"10q82sD-Z22LjeBVCDfCAdwrgy8Mls-9E"},
         {name:"Unité 2", id:"1KjK75YiLQUeB0WAMb9Qe_EYg81SXA0_L"},
         {name:"Unité 3", id:"1r_5zAIzxCUrl_UY1yYkhNXKGtOJzqFvh"},
@@ -13,10 +13,13 @@ const blocs = {
         {name:"Unité 5", id:"1N5gC18WDfFVN-k2CiBOuuthAkkx0c1F_"},
         {name:"Unité 6", id:"1WrXVPb4wc5y5LiD8YaQF9mweg_qi1d5a"}
     ],
-    "Bloc2": [],
-    "Bloc3": [],
-    "Bloc4": [],
-    "Bloc5": []
+    "S2": [],
+    "S3": [],
+    "S4 CST": [],
+    "S4 SN": [],
+    "S5 CST": [],
+    "S5 SN": [],
+    "PreU": []
 };
 
 // 🔹 afficher les unités
