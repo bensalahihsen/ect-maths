@@ -6,7 +6,12 @@ if(localStorage.getItem("logged") !== "true"){
 // 📂 dossiers des unités
 const blocs = {
     "S1": [
-        {name:"Unité 1", id:"10q82sD-Z22LjeBVCDfCAdwrgy8Mls-9E"},
+        {
+            name:"Unité 1",
+            n: "1Q-5SjASvIPJLNXNc1JZ3m9WqJRLvfkQs",
+            n1: "1NgyC8_mYDUK3nAgKjooLHcyaY83XDp2Y",
+            nplus1: "1kdWXnBgiBbVbljFvEnor5qDa-XJqovV9"
+        },
         {name:"Unité 2", id:"1KjK75YiLQUeB0WAMb9Qe_EYg81SXA0_L"},
         {name:"Unité 3", id:"1r_5zAIzxCUrl_UY1yYkhNXKGtOJzqFvh"},
         {name:"Unité 4", id:"1Ug9CauFD6ez_PbXUS8rl_mi85lK6rsTg"},
@@ -27,7 +32,6 @@ function openBloc(blocName){
     const grid = document.querySelector(".grid");
     const units = blocs[blocName];
 
-    // layout vertical
     grid.style.display = "flex";
     grid.style.flexDirection = "column";
     grid.style.alignItems = "center";
@@ -57,23 +61,52 @@ function openUnit(blocName, index){
 
     grid.style.display = "block";
 
-    grid.innerHTML = `
-        <div class="card back-btn" onclick="openBloc('${blocName}')">⬅ Retour</div>
+    // 🔥 CAS SPÉCIAL : UNITE 1
+    if(index === 0){
+        grid.innerHTML = `
+            <div class="card back-btn" onclick="openBloc('${blocName}')">⬅ Retour</div>
 
-        <h2 style="color:white; margin:20px 0; text-align:center;">
-            ${unit.name}
-        </h2>
+            <h2 style="color:white; margin:20px 0; text-align:center;">
+                ${unit.name}
+            </h2>
 
-        <iframe 
-        src="https://drive.google.com/embeddedfolderview?id=${unit.id}#list"
-        style="width:100%; height:500px; border:0;">
-        </iframe>
-    `;
+            <div style="display:flex; gap:20px; justify-content:center; margin-top:30px;">
+                <button onclick="openPart('${unit.n1}')">N-1</button>
+                <button onclick="openPart('${unit.n}')">N</button>
+                <button onclick="openPart('${unit.nplus1}')">N+1</button>
+            </div>
+        `;
+    }
+
+    // 🔹 AUTRES UNITÉS
+    else{
+        grid.innerHTML = `
+            <div class="card back-btn" onclick="openBloc('${blocName}')">⬅ Retour</div>
+
+            <h2 style="color:white; margin:20px 0; text-align:center;">
+                ${unit.name}
+            </h2>
+
+            <iframe 
+            src="https://drive.google.com/embeddedfolderview?id=${unit.id}#list"
+            style="width:100%; height:500px; border:0;">
+            </iframe>
+        `;
+    }
 }
 
-// 🔹 reset view
-function resetView(){
-    location.reload();
+// 🔹 ouvrir N / N-1 / N+1
+function openPart(folderId){
+    const grid = document.querySelector(".grid");
+
+    grid.innerHTML = `
+        <div class="card back-btn" onclick="location.reload()">⬅ Retour</div>
+
+        <iframe 
+        src="https://drive.google.com/embeddedfolderview?id=${folderId}#list"
+        style="width:100%; height:700px; border:0;">
+        </iframe>
+    `;
 }
 
 // 🔹 logout
