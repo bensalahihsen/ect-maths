@@ -10,17 +10,26 @@
 <body>
 
 <header class="site-header">
-    <a href="https://ec-tunis.com" target="_blank">
-        <img src="logo.png" alt="Logo" class="logo">
-    </a>
-    <h1>Portail enseignants - Mathématiques</h1>
 
-<a href="about.html" class="about-btn">ℹ️ À propos</a>
+    <div class="header-left">
+        <a href="https://ec-tunis.com" target="_blank">
+            <img src="logo.png" alt="Logo" class="logo">
+        </a>
+    </div>
+
+    <div class="header-center">
+        <h1>Portail enseignants - Mathématiques</h1>
+    </div>
+
+    <div class="header-right">
+        <a href="about.html" class="about-btn">ℹ️ À propos</a>
+        <button onclick="logout()" class="logout">Déconnexion</button>
+    </div>
 
 </header>
 
 <div class="header">
-    <h1>📂 Continuité pédagogique </h1>
+    <h1>📂 Continuité pédagogique</h1>
     <p>Cliquez sur un niveau pour voir ses fichiers</p>
 </div>
 
@@ -35,13 +44,11 @@
     <div class="card" onclick="openBloc('PreU')">PreU</div>
 </div>
 
-<button onclick="logout()" class="logout">Déconnexion</button>
-
 <script src="script.js"></script>
-
-</body>
-</html>
 
 <footer>
 © 2026 Portail Enseignants | EC Tunis
 </footer>
+
+</body>
+</html>

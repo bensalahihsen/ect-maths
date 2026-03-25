@@ -3,6 +3,9 @@ if(localStorage.getItem("logged") !== "true"){
     window.location.href = "login.html";
 }
 
+// 📌 historique de navigation
+let navigationHistory = [];
+
 // 📂 dossiers des unités
 const blocs = {
     "S1": [
@@ -29,6 +32,9 @@ const blocs = {
 
 // 🔹 afficher les unités
 function openBloc(blocName){
+
+    navigationHistory.push({type: "bloc", bloc: blocName});
+
     const grid = document.querySelector(".grid");
     const units = blocs[blocName];
 
@@ -37,7 +43,7 @@ function openBloc(blocName){
     grid.style.alignItems = "center";
     grid.style.gap = "15px";
 
-    let content = `<div class="card back-btn" onclick="location.reload()">⬅ Retour</div>`;
+    let content = `<div class="card back-btn" onclick="goBack()">⬅ Retour</div>`;
 
     if(units.length === 0){
         content += `<p>Aucune unité disponible</p>`;
@@ -56,6 +62,13 @@ function openBloc(blocName){
 
 // 🔹 afficher une unité
 function openUnit(blocName, index){
+
+    navigationHistory.push({
+        type: "unit",
+        bloc: blocName,
+        index: index
+    });
+
     const unit = blocs[blocName][index];
     const grid = document.querySelector(".grid");
 
@@ -64,16 +77,16 @@ function openUnit(blocName, index){
     // 🔥 CAS SPÉCIAL : UNITE 1
     if(index === 0){
         grid.innerHTML = `
-            <div class="card back-btn" onclick="openBloc('${blocName}')">⬅ Retour</div>
+            <div class="card back-btn" onclick="goBack()">⬅ Retour</div>
 
             <h2 style="color:white; margin:20px 0; text-align:center;">
                 ${unit.name}
             </h2>
 
             <div style="display:flex; gap:20px; justify-content:center; margin-top:30px;">
-                <button onclick="openPart('${unit.n1}')">N-1</button>
-                <button onclick="openPart('${unit.n}')">N</button>
-                <button onclick="openPart('${unit.nplus1}')">N+1</button>
+                <button class="big-btn" onclick="openPart('${unit.n1}')">N-1</button>
+                <button class="big-btn" onclick="openPart('${unit.n}')">N</button>
+                <button class="big-btn" onclick="openPart('${unit.nplus1}')">N+1</button>
             </div>
         `;
     }
@@ -81,7 +94,7 @@ function openUnit(blocName, index){
     // 🔹 AUTRES UNITÉS
     else{
         grid.innerHTML = `
-            <div class="card back-btn" onclick="openBloc('${blocName}')">⬅ Retour</div>
+            <div class="card back-btn" onclick="goBack()">⬅ Retour</div>
 
             <h2 style="color:white; margin:20px 0; text-align:center;">
                 ${unit.name}
@@ -97,16 +110,43 @@ function openUnit(blocName, index){
 
 // 🔹 ouvrir N / N-1 / N+1
 function openPart(folderId){
+
+    navigationHistory.push({type: "part"});
+
     const grid = document.querySelector(".grid");
 
     grid.innerHTML = `
-        <div class="card back-btn" onclick="location.reload()">⬅ Retour</div>
+        <div class="card back-btn" onclick="goBack()">⬅ Retour</div>
 
         <iframe 
         src="https://drive.google.com/embeddedfolderview?id=${folderId}#list"
         style="width:100%; height:700px; border:0;">
         </iframe>
     `;
+}
+
+// 🔹 retour intelligent
+function goBack(){
+
+    navigationHistory.pop(); // page actuelle
+    const previous = navigationHistory.pop(); // page précédente
+
+    if(!previous){
+        location.reload();
+        return;
+    }
+
+    if(previous.type === "bloc"){
+        openBloc(previous.bloc);
+    }
+
+    if(previous.type === "unit"){
+        openUnit(previous.bloc, previous.index);
+    }
+
+    if(previous.type === "part"){
+        location.reload();
+    }
 }
 
 // 🔹 logout

@@ -1,3 +1,5 @@
+/* ================= GLOBAL ================= */
+
 body {
     margin: 0;
     font-family: 'Segoe UI', sans-serif;
@@ -6,6 +8,7 @@ body {
     text-align: center;
 }
 
+/* ================= HEADER ================= */
 .header {
     padding: 40px 20px;
 }
@@ -19,6 +22,8 @@ body {
     opacity: 0.8;
 }
 
+/* ================= CARDS ================= */
+/* ================= GRID (NIVEAUX + BLOCS) ================= */
 .grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -48,11 +53,12 @@ body {
     transform: translateY(-10px);
 }
 
+/* ================= FILES ================= */
 .file-card {
     display: flex;
     align-items: center;
+    justify-content: space-between; /* pour mettre l’icône à droite */
     gap: 10px;
-    justify-content: flex-start;
     padding: 20px;
     font-size: 16px;
 }
@@ -61,6 +67,10 @@ body {
     width: 30px;
     height: 30px;
 }
+
+
+
+/* ================= LOGO ================= */
 
 .logo-container {
     margin-top: 20px;
@@ -79,14 +89,7 @@ body {
     font-size: 18px;
     cursor: pointer;
 }
-.file-card {
-    display: flex;
-    align-items: center;
-    justify-content: space-between; /* pour mettre l’icône à droite */
-    gap: 10px;
-    padding: 20px;
-    font-size: 16px;
-}
+
 
 }
 .site-header .logo {
@@ -150,9 +153,6 @@ border-radius:5px;
 
 .logout{
 
-position:absolute;
-top:20px;
-right:20px;
 background:red;
 color:white;
 border:none;
@@ -219,7 +219,7 @@ body {
     background-color: #f0f8ff;   /* optionnel : changer légèrement la couleur au survol */
 }
 
-/* Boutons */
+/* ================= BUTTONS ================= */
 button {
     background-color: #2c7be5;
     color: white;
@@ -383,8 +383,8 @@ footer{
 }
 
 .about-btn {
-    background-color: #2c7be5;
-    color: white;
+    background-color: white;
+    color: #2c7be5;
     padding: 8px 12px;
     border-radius: 6px;
     text-decoration: none;
@@ -392,7 +392,7 @@ footer{
 }
 
 .about-btn:hover {
-    background-color: #1a5fcc;
+    background-color: #f0f0f0;
 }
 
 .about-container {
@@ -404,6 +404,8 @@ footer{
     text-align: left; /* IMPORTANT */
 }
 
+/* ================= BACK BUTTON BIG ================= */
+
 .back-btn {
     display: inline-block;
     margin-top: 20px;
@@ -412,4 +414,42 @@ footer{
     padding: 10px 15px;
     border-radius: 6px;
     text-decoration: none;
+}
+
+.big-btn {
+    padding: 18px 35px;   /* taille du bouton */
+    font-size: 20px;      /* taille du texte */
+    border-radius: 10px;
+    background-color: #2c7be5;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.big-btn:hover {
+    background-color: #1a5fcc;
+    transform: scale(1.05);
+}
+
+.site-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.header-left,
+.header-center,
+.header-right {
+    display: flex;
+    align-items: center;
+}
+
+.header-center {
+    flex: 1;
+    justify-content: center;
+}
+
+.header-right {
+    gap: 10px;
 }
