@@ -1,7 +1,7 @@
 const CACHE_NAME = "maths-app-v1";
 
 const urlsToCache = [
-  "index.html",
+  "./"
   "style.css",
   "script.js",
   "logo.png"
